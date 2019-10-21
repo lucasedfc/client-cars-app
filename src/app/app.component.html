@@ -19,10 +19,10 @@
 
       <ul class="nav navbar-nav navbar-right">
           <li>
-              <a href="">Login</a>
+              <a [routerLink]= "['login']">Login</a>
           </li>
           <li>
-              <a href="">Register</a>
+              <a [routerLink] = "['register']">Register</a>
           </li>
       </ul>
     </div>
@@ -31,3 +31,4 @@
 
 </header>
 
+<router-outlet></router-outlet>
