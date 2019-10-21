@@ -27,6 +27,6 @@
             <span *ngIf="!password.valid && password.touched">Password is required</span>
         </p>
 
-        <input type="submit" value="Register" class="btn btn-success">
+        <input type="submit" [disabled]="!registerForm.valid" value="Register" class="btn btn-success">
     </form>
 </div>
