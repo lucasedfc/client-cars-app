@@ -1,3 +1,6 @@
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { CarNewComponent } from './components/car-new/car-new.component';
 import { ModuleWithProviders} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -22,6 +25,18 @@ const appRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'create-car',
+    component: CarNewComponent
+  },
+  {
+    path: 'edit-car/:id',
+    component: CarEditComponent
+  },
+  {
+    path: 'car/:id',
+    component: CarDetailComponent
   },
   {
     path: 'logout/:sure',

@@ -10,12 +10,18 @@ import { routing, appRoutingProviders } from './app.routing';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultComponent } from './components/default/default.component';
+import { CarNewComponent } from './components/car-new/car-new.component';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { CarDetailComponent } from './components/car-detail/car-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DefaultComponent
+    DefaultComponent,
+    CarNewComponent,
+    CarEditComponent,
+    CarDetailComponent
   ],
   imports: [
     BrowserModule,
