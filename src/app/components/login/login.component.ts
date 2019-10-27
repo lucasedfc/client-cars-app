@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs/internal/Subscription';
 import { UserService } from './../../services/user.service';
 import { User } from './../../models/user';
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
   providers: [UserService]
 })
 
-export class LoginComponent implements OnDestroy {
+export class LoginComponent implements OnDestroy, OnInit {
  public title: string;
  public user: User;
  public subs: Subscription[] = [];
@@ -25,6 +25,11 @@ export class LoginComponent implements OnDestroy {
  ) {
   this.title = 'Login';
   this.user = new User(1, 'ROLE_USER', '', '', '', '');
+ }
+
+ ngOnInit() {
+   const user = this._userService.getIdentity();
+   console.log(user.name);
  }
 
  ngOnDestroy() {
