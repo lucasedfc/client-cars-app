@@ -16,6 +16,7 @@ export class LoginComponent implements OnDestroy, OnInit {
  public subs: Subscription[] = [];
  public token: string;
  public identity;
+ public status;
 
  constructor(
    private route: ActivatedRoute,
@@ -28,8 +29,7 @@ export class LoginComponent implements OnDestroy, OnInit {
  }
 
  ngOnInit() {
-   const user = this._userService.getIdentity();
-   console.log(user.name);
+   this.logout();
  }
 
  ngOnDestroy() {
@@ -41,6 +41,7 @@ export class LoginComponent implements OnDestroy, OnInit {
    this.subs.push(this._userService.signin(this.user).subscribe(
      res => {
       if (res.status !== 'error') {
+        this.status = 'success';
         // save token
         this.token = res;
         localStorage.setItem('token', this.token);
@@ -49,6 +50,8 @@ export class LoginComponent implements OnDestroy, OnInit {
           result => {
            this.identity = result;
            localStorage.setItem('identity', JSON.stringify(this.identity));
+
+           this.router.navigate(['home']);
           },
           err => {
            console.log('res err', err);
@@ -56,11 +59,28 @@ export class LoginComponent implements OnDestroy, OnInit {
         ));
       } else {
         console.log('Login error', res.message);
+        this.status = 'error';
       }
      },
      err => {
       console.log('res err', err);
      }
    ));
+ }
+
+ logout() {
+   this.route.params.subscribe(
+     params => {
+       const logout = +params.sure;
+       if (logout === 1) {
+        localStorage.removeItem('identity');
+        localStorage.removeItem('token');
+
+        this.identity = null;
+        this.token = null;
+        this.router.navigate(['home']);
+      }
+     }
+   );
  }
 }

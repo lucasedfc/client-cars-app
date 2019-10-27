@@ -9,11 +9,13 @@ import { FormsModule } from '@angular/forms';
 import { routing, appRoutingProviders } from './app.routing';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DefaultComponent } from './components/default/default.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DefaultComponent
   ],
   imports: [
     BrowserModule,

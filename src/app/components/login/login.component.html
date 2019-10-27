@@ -1,5 +1,13 @@
 <div class="col-md-12">
 
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Login successful
+    </div>
+
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        Login failed
+    </div>
+
     <h1>{{title}}</h1>
     <form action="" #loginForm="ngForm" (ngSubmit)="login()" class="col-md-5">
 

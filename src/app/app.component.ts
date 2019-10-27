@@ -1,5 +1,5 @@
 import { UserService } from './services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   providers: [UserService]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   title = 'client-cars';
   public identity;
   public token;
@@ -17,6 +17,11 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.identity = this.userService.getIdentity();
+    this.token = this.userService.getToken();
+  }
+
+  ngDoCheck() {
     this.identity = this.userService.getIdentity();
     this.token = this.userService.getToken();
   }
