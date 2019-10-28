@@ -12,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CarNewComponent implements OnInit {
 
-  public title: string;
+  // tslint:disable-next-line:variable-name
+  public page_title: string;
   public identity;
   public token;
   public car: Car;
@@ -24,7 +25,7 @@ export class CarNewComponent implements OnInit {
     public userService: UserService,
     private carService: CarService
   ) {
-    this.title = 'Create new car';
+    this.page_title = 'Create new car';
     this.identity = this.userService.getIdentity();
     this.token = this.userService.getToken();
   }
@@ -37,8 +38,7 @@ export class CarNewComponent implements OnInit {
     }
   }
 
-  addCar(form) {
-    console.log(this.car);
+  submit(form) {
     this.carService.create(this.token, this.car).subscribe(
       res => {
         console.log(res);

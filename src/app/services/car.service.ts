@@ -33,4 +33,12 @@ export class CarService {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
         return this._http.get(this.url + `cars/${id}`, { headers });
     }
+
+    public update(token, car, id): Observable<any> {
+        const json = JSON.stringify(car);
+        const params = 'json=' + json;
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        .set('Authorization', token);
+        return this._http.put(this.url + `cars/${id}`, params, { headers });
+    }
 }

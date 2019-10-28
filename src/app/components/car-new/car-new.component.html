@@ -1,4 +1,5 @@
-<div class="col-md-12">
+<div class="col-md-12" *ngIf="page_title">
+    <h2>{{page_title}}</h2>
 
     <div class="alert alert-danger" *ngIf="statuscar == 'error'">
         Error saving car, try again
@@ -8,7 +9,7 @@
         Car created!
     </div>
 
-    <form class="col-md-5" #carNew="ngForm" (ngSubmit)="addCar(carNew)">
+    <form class="col-md-5" #carNew="ngForm" (ngSubmit)="submit(carNew)">
 
         <p>
             <label for="title">Title</label>
@@ -42,6 +43,6 @@
             <span *ngIf="!status.valid && status.touched">status is required</span>
         </p>
 
-        <input class="btn btn-success" type="submit" value="Create Car" [disabled]="carNew.invalid">
+        <input class="btn btn-success" type="submit" value="Save" [disabled]="carNew.invalid">
     </form>
 </div>
