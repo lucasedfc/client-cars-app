@@ -33,4 +33,8 @@ export class CarNewComponent implements OnInit {
     }
   }
 
+  addCar(form) {
+    console.log(this.car);
+  }
+
 }

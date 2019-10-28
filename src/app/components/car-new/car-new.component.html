@@ -1,3 +1,39 @@
 <div class="col-md-12">
-    {{title}}
+
+    <form class="col-md-5" #carNew="ngForm" (ngSubmit)="addCar(carNew)">
+
+        <p>
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" 
+            #title="ngModel" [(ngModel)]="car.title" required>
+            <span *ngIf="!title.valid && title.touched">title is required</span>
+        </p>
+
+        <p>
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description"
+            #description="ngModel" [(ngModel)]="car.description" required></textarea>
+            <span *ngIf="!description.valid && description.touched">description is required</span>
+        </p>
+
+        <p>
+            <label for="price">Price</label>
+            <input type="text" class="form-control" name="price" 
+            #price="ngModel" [(ngModel)]="car.price" required>
+            <span *ngIf="!price.valid && price.touched">price is required</span>
+        </p>
+
+        <p>
+            <label for="status">For sale?</label>
+            <select class="form-control" name="status" 
+            #status="ngModel" [(ngModel)]="car.status" required>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+
+            <span *ngIf="!status.valid && status.touched">status is required</span>
+        </p>
+
+        <input class="btn btn-success" type="submit" value="Create Car" [disabled]="carNew.invalid">
+    </form>
 </div>
