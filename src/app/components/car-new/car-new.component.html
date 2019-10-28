@@ -1,5 +1,13 @@
 <div class="col-md-12">
 
+    <div class="alert alert-danger" *ngIf="statuscar == 'error'">
+        Error saving car, try again
+    </div>
+
+    <div class="alert alert-success" *ngIf="statuscar == 'success'">
+        Car created!
+    </div>
+
     <form class="col-md-5" #carNew="ngForm" (ngSubmit)="addCar(carNew)">
 
         <p>

@@ -1,3 +1,4 @@
+import { CarService } from './../../services/car.service';
 import { Car } from './../../models/car';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,7 +7,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-car-new',
   templateUrl: './car-new.component.html',
-  styleUrls: ['./car-new.component.scss']
+  styleUrls: ['./car-new.component.scss'],
+  providers: [CarService]
 })
 export class CarNewComponent implements OnInit {
 
@@ -14,11 +16,13 @@ export class CarNewComponent implements OnInit {
   public identity;
   public token;
   public car: Car;
+  public statuscar: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public userService: UserService
+    public userService: UserService,
+    private carService: CarService
   ) {
     this.title = 'Create new car';
     this.identity = this.userService.getIdentity();
@@ -35,6 +39,21 @@ export class CarNewComponent implements OnInit {
 
   addCar(form) {
     console.log(this.car);
+    this.carService.create(this.token, this.car).subscribe(
+      res => {
+        console.log(res);
+        if (res.code === 200) {
+          this.statuscar = 'success';
+          this.router.navigate(['/home']);
+        } else {
+          this.statuscar = 'error';
+        }
+      },
+      error => {
+        console.log('err', error);
+        this.statuscar = 'error';
+      }
+    );
   }
 
 }
