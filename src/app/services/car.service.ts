@@ -41,4 +41,10 @@ export class CarService {
         .set('Authorization', token);
         return this._http.put(this.url + `cars/${id}`, params, { headers });
     }
+
+    public delete(token, id): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        .set('Authorization', token);
+        return this._http.delete(this.url + `cars/${id}`, { headers });
+    }
 }

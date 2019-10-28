@@ -28,18 +28,36 @@ export class DefaultComponent implements OnInit {
  ) {
   this.title = 'Home';
   this.user = new User(1, 'ROLE_USER', '', '', '', '');
+  this.token = this._userService.getToken();
+  this.identity = this._userService.getIdentity();
  }
 
  ngOnInit() {
-   this.carService.getCars().subscribe(
+   this.getCars();
+ }
+
+ getCars() {
+  this.carService.getCars().subscribe(
+    res => {
+     console.log('res cars', res);
+     if (res.status === 'success') {
+       this.cars = res.cars;
+     }
+    },
+    error => {
+     console.log('err', error);
+    }
+  );
+ }
+
+ deleteCar(id) {
+   this.carService.delete(this.token, id).subscribe(
      res => {
-      console.log('res cars', res);
-      if (res.status === 'success') {
-        this.cars = res.cars;
-      }
+      console.log('car deleted', res);
+      this.getCars();
      },
      error => {
-      console.log('err', error);
+       console.log('err', error);
      }
    )
  }

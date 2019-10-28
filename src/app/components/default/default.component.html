@@ -7,7 +7,7 @@
                 <th class="col-md-7">Car</th>
                 <th>Price</th>
                 <th>For Sale</th>
-                <th>Action</th>
+                <th *ngIf="identity">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,9 +29,9 @@
                             No
                     </span>
                 </td>
-                <td>
+                <td *ngIf="identity">
                     <a class="btn btn-warning btn-space" [routerLink]="['/edit-car', car.id]"><i class="glyphicon glyphicon-pencil"></i></a>
-                    <a class="btn btn-danger btn-space" href="#"><i class="glyphicon glyphicon-trash"></i></a>
+                    <a (click)="deleteCar(car.id);" class="btn btn-danger btn-space" href="#"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
             </tr>
         </tbody>
