@@ -23,4 +23,9 @@ export class CarService {
         .set('Authorization', token);
         return this._http.post(this.url + 'cars', params, { headers });
     }
+
+    public getCars(): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        return this._http.get(this.url + 'cars', { headers });
+    }
 }
