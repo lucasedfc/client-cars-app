@@ -13,7 +13,10 @@
         <tbody>
             <tr *ngFor="let car of cars">
                 <td class="col-md-7">
-                    {{car.title}}
+                    <a [routerLink]="['/car', car.id]"  href="">
+
+                        {{car.title}}
+                    </a>
                 </td>
                 <td>
                     {{car.price}}
@@ -27,8 +30,8 @@
                     </span>
                 </td>
                 <td>
-                    <a class="btn btn-warning" [routerLink]="['edit-car', car.id]">Edit</a>
-                    <a class="btn btn-danger" href="#">Delete</a>
+                    <a class="btn btn-warning btn-space" [routerLink]="['edit-car', car.id]"><i class="glyphicon glyphicon-pencil"></i></a>
+                    <a class="btn btn-danger btn-space" href="#"><i class="glyphicon glyphicon-trash"></i></a>
                 </td>
             </tr>
         </tbody>

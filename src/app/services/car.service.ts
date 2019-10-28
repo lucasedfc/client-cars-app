@@ -28,4 +28,9 @@ export class CarService {
         const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
         return this._http.get(this.url + 'cars', { headers });
     }
+
+    public getCar(id): Observable<any> {
+        const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+        return this._http.get(this.url + `cars/${id}`, { headers });
+    }
 }
